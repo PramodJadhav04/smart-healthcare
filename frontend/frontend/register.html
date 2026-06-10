@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - SmartCare</title>
+    <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>SmartCare</h1>
+            </div>
+            
+            <h2>Create Patient Account</h2>
+            
+            <form id="registerForm">
+                <!-- Personal Info -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+
+                <!-- Medical History -->
+                <div class="form-section">
+                    <h3><i class="fas fa-file-medical"></i> Medical History</h3>
+                    <div class="row">
+                        <input type="number" id="age" placeholder="Age" min="1" max="120" required>
+                        <select id="gender" required>
+                            <option value="">Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <input type="text" id="bloodGroup" placeholder="Blood Group (Optional)">
+                    <textarea id="previousDiseases" placeholder="Previous Diseases (Diabetes, BP, Asthma, etc.)" rows="3"></textarea>
+                </div>
+
+                <!-- Emergency Contact -->
+                <div class="form-section">
+                    <h3><i class="fas fa-phone-alt"></i> Emergency Contact</h3>
+                    <input type="text" id="emergencyName" placeholder="Emergency Contact Name">
+                    <input type="tel" id="emergencyPhone" placeholder="Emergency Contact Phone">
+                </div>
+
+                <!-- Terms -->
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the Terms & Conditions</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-user-plus"></i> Create Account & Login
+                </button>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="error-message"></div>
+            </form>
+
+            <!-- Links -->
+            <div class="links">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JS File -->
+    <script src="./assets/js/registration-login.js"></script>
+</body>
+</html>

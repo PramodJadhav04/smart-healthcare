@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login - SmartCare</title>
+    <link rel="stylesheet" href="./assets/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>👤 Patient Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p class="register-link">
+                New patient? <a href="register.html">Register here</a>
+            </p>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+    <script src="./assets/js/registration-login.js"></script>
+
+    <!-- API JavaScript -->
+    <script>
+        const API_BASE_URL = 'http://localhost:8080/api';
+        
+        // Login function
+        async function loginPatient(email, password) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/patients/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Login failed');
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error('Login error:', error);
+                throw error;
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Show loading
+            const submitBtn = event.target.querySelector('.btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Logging in...';
+            submitBtn.disabled = true;
+            
+            try {
+                const result = await loginPatient(email, password);
+                
+                // Save user data to localStorage
+                localStorage.setItem('patientData', JSON.stringify(result));
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('patientId', result.patientId);
+                localStorage.setItem('patientName', result.fullName);
+                
+                // Show success message
+                alert('✅ Login successful! Welcome ' + result.fullName);
+                
+                // Redirect to dashboard after 1 second
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+                
+            } catch (error) {
+                alert('❌ Login failed: ' + error.message);
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Test backend connection on page load
+        window.addEventListener('load', async function() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                if (response.ok) {
+                    console.log('✅ Backend connected successfully');
+                } else {
+                    console.warn('⚠️ Backend connection issue');
+                }
+            } catch (error) {
+                console.error('❌ Cannot connect to backend. Make sure Spring Boot is running on port 8080');
+            }
+        });
+    </script>
+</body>
+</html>

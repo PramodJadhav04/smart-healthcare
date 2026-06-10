@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prescription - SmartCare</title>
+
+    <link rel="stylesheet" href="./assets/css/prescription.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="prescription-container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <a href="doctors.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Doctors
+            </a>
+            <h1>
+                <i class="fas fa-prescription-bottle-alt"></i>
+                Medical Prescription
+            </h1>
+        </div>
+
+        <div class="header-right">
+            <button id="printBtn" class="action-btn">
+                <i class="fas fa-print"></i> Print
+            </button>
+            <button id="exportWordBtn" class="action-btn">
+                <i class="fas fa-file-word"></i> Export to Word
+            </button>
+            <button id="downloadPdfBtn" class="action-btn">
+                <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- Doctor & Patient Info -->
+    <div class="info-section">
+
+        <!-- Doctor Info -->
+        <div class="doctor-info">
+            <h2><i class="fas fa-user-md"></i> Doctor Information</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Doctor Name:</span>
+                    <span class="value" id="doctorName"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Specialization:</span>
+                    <span class="value" id="doctorSpecialty"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">License No:</span>
+                    <span class="value" id="doctorLicense"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Contact:</span>
+                    <span class="value" id="doctorContact"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Info -->
+        <div class="patient-info">
+            <h2><i class="fas fa-user-injured"></i> Patient Information</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="label">Patient Name:</span>
+                    <span class="value" id="patientName"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Age & Gender:</span>
+                    <span class="value" id="patientAgeGender"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Symptoms:</span>
+                    <span class="value" id="patientSymptoms"></span>
+                </div>
+
+                <div class="info-item">
+                    <span class="label">Date:</span>
+                    <span class="value" id="prescriptionDate"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Diagnosis -->
+    <div class="diagnosis-section">
+        <h2><i class="fas fa-stethoscope"></i> Diagnosis</h2>
+
+        <div class="diagnosis-box">
+            <p id="diagnosisText"></p>
+
+            <div class="severity">
+                <span class="label">Condition Severity:</span>
+                <span class="severity-level moderate" id="severityLevel">Moderate</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medicines -->
+    <div class="medicines-section">
+        <div class="section-header">
+            <h2><i class="fas fa-pills"></i> Recommended Medicines</h2>
+            <button id="addMedicineBtn" class="btn-small">
+                <i class="fas fa-plus"></i> Add Custom Medicine
+            </button>
+        </div>
+
+        <table class="medicines-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Medicine</th>
+                    <th>Type</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Duration</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Timing</th>
+                    <th>Instructions</th>
+                </tr>
+            </thead>
+
+            <tbody id="medicinesList">
+                <!-- JS will inject medicines here -->
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="7" class="total-label">Total Cost</td>
+                    <td id="totalCost">₹ 0</td>
+                    <td colspan="2"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-buttons">
+        <button id="savePrescriptionBtn" class="btn-primary">
+            <i class="fas fa-save"></i> Save Prescription
+        </button>
+
+        <button id="sendEmailBtn" class="btn-secondary">
+            <i class="fas fa-envelope"></i> Send to Email
+        </button>
+
+        <a href="dashboard.html" class="btn-tertiary">
+            <i class="fas fa-home"></i> Dashboard
+        </a>
+    </div>
+
+    <!-- Success -->
+    <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <span>Prescription saved successfully!</span>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="./assets/js/prescription.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Doctor - SmartCare</title>
+    <link rel="stylesheet" href="./assets/css/doctors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="doctors-container">
+        <!-- Header -->
+        <div class="doctors-header">
+            <div class="free-badge">
+                <i class="fas fa-heart"></i> 100% FREE Healthcare
+            </div>
+            <a href="checkup.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Checkup
+            </a>
+            <h1><i class="fas fa-user-md"></i> Choose Your Doctor</h1>
+            <p class="free-subtitle">All consultations and medicines are FREE for everyone</p>
+        </div>
+
+        <!-- Checkup Data Summary -->
+        <div class="checkup-summary" id="checkupSummary">
+            <h3><i class="fas fa-file-medical"></i> Your Checkup Summary</h3>
+            <div id="summaryContent">
+                <!-- Summary will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Government Scheme Info -->
+        <div class="govt-scheme">
+            <h3><i class="fas fa-flag"></i> Government Healthcare Scheme</h3>
+            <p>SmartCare is part of the National Health Mission. All services are completely free for citizens.</p>
+            <div class="scheme-benefits">
+                <span><i class="fas fa-check-circle"></i> Free Consultation</span>
+                <span><i class="fas fa-check-circle"></i> Free Medicines</span>
+                <span><i class="fas fa-check-circle"></i> Free Diagnostic Tests</span>
+                <span><i class="fas fa-check-circle"></i> Free Follow-up</span>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="filter-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search doctors by name or specialty...">
+                <button id="searchBtn">Search</button>
+            </div>
+            
+            <div class="filters">
+                <select id="specialtyFilter">
+                    <option value="">Filter by Specialty</option>
+                    <option value="General Physician">General Physician</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                </select>
+                
+                <select id="availabilityFilter">
+                    <option value="">Filter by Availability</option>
+                    <option value="today">Available Today</option>
+                    <option value="tomorrow">Available Tomorrow</option>
+                    <option value="week">Available This Week</option>
+                </select>
+                
+                <select id="hospitalFilter">
+                    <option value="">Filter by Hospital</option>
+                    <option value="Government">Government Hospital</option>
+                    <option value="Primary">Primary Health Center</option>
+                    <option value="Community">Community Health Center</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Doctor Recommendations -->
+        <div class="recommendation">
+            <h2><i class="fas fa-lightbulb"></i> Based on your symptoms, we recommend:</h2>
+            <div class="recommended-specialties" id="recommendedSpecialties">
+                <!-- Recommended specialties will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Selected Doctor Confirmation -->
+        <div class="selected-doctor" id="selectedDoctorBox">
+            <h3><i class="fas fa-check-circle"></i> Doctor Selected</h3>
+            <div id="selectedDoctorInfo">
+                <!-- Selected doctor info will appear here -->
+            </div>
+            <button id="proceedToPrescription" class="book-btn">
+                <i class="fas fa-prescription"></i> Proceed to Get FREE Prescription
+            </button>
+        </div>
+
+        <!-- Doctors List -->
+        <div class="doctors-list" id="doctorsList">
+            <!-- Doctor 1 - General Physician -->
+            <div class="doctor-card" data-specialty="General Physician" data-availability="today" data-hospital="Government">
+                <div class="free-tag">FREE</div>
+                <div class="doctor-info">
+                    <div class="doctor-avatar" style="background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="doctor-details">
+                        <h3>Dr. Priya Sharma</h3>
+                        <p class="specialty">
+                            <i class="fas fa-stethoscope"></i> General Physician
+                        </p>
+                        <p class="experience">
+                            <i class="fas fa-star"></i> 4.7 (450 reviews) • 
+                            <i class="fas fa-briefcase"></i> 10 years experience
+                        </p>
+                        <p class="availability available">
+                            <i class="fas fa-clock"></i> Available Today (9 AM - 5 PM)
+                        </p>
+                        <p class="education">
+                            <i class="fas fa-graduation-cap"></i> M.B.B.S., M.D. (General Medicine)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doctor-meta">
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-rupee-sign"></i> Consultation Fee:</span>
+                        <span class="value free">COMPLETELY FREE</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-clock"></i> Wait Time:</span>
+                        <span class="value">20-30 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-language"></i> Languages:</span>
+                        <span class="value">Hindi, English</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-hospital"></i> Hospital:</span>
+                        <span class="value">District Government Hospital</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-stats">
+                    <div class="stat">
+                        <span class="number">5,000+</span>
+                        <span class="label">Free Consultations</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">98%</span>
+                        <span class="label">Patient Satisfaction</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-actions">
+                    <button class="btn-view" onclick="viewDoctorProfile('Dr. Priya Sharma')">
+                        <i class="fas fa-eye"></i> View Profile
+                    </button>
+                    <button class="btn-book" onclick="selectDoctor('Dr. Priya Sharma', 'General Physician', 'District Government Hospital', '10 years', '4.7')">
+                        <i class="fas fa-calendar-check"></i> Select This Doctor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 2 - Cardiologist -->
+            <div class="doctor-card" data-specialty="Cardiologist" data-availability="tomorrow" data-hospital="Government">
+                <div class="free-tag">FREE</div>
+                <div class="doctor-info">
+                    <div class="doctor-avatar" style="background: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="doctor-details">
+                        <h3>Dr. Rajesh Verma</h3>
+                        <p class="specialty">
+                            <i class="fas fa-heart"></i> Cardiologist
+                        </p>
+                        <p class="experience">
+                            <i class="fas fa-star"></i> 4.9 (320 reviews) • 
+                            <i class="fas fa-briefcase"></i> 15 years experience
+                        </p>
+                        <p class="availability">
+                            <i class="fas fa-clock"></i> Available Tomorrow
+                        </p>
+                        <p class="education">
+                            <i class="fas fa-graduation-cap"></i> M.B.B.S., D.M. (Cardiology), AIIMS
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doctor-meta">
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-rupee-sign"></i> Consultation Fee:</span>
+                        <span class="value free">COMPLETELY FREE</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-clock"></i> Wait Time:</span>
+                        <span class="value">1-2 days</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-language"></i> Languages:</span>
+                        <span class="value">Hindi, English</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-hospital"></i> Hospital:</span>
+                        <span class="value">Government Medical College</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-stats">
+                    <div class="stat">
+                        <span class="number">3,200+</span>
+                        <span class="label">Free Heart Checkups</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">95%</span>
+                        <span class="label">Success Rate</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-actions">
+                    <button class="btn-view" onclick="viewDoctorProfile('Dr. Rajesh Verma')">
+                        <i class="fas fa-eye"></i> View Profile
+                    </button>
+                    <button class="btn-book" onclick="selectDoctor('Dr. Rajesh Verma', 'Cardiologist', 'Government Medical College', '15 years', '4.9')">
+                        <i class="fas fa-calendar-check"></i> Select This Doctor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 3 - Pediatrician -->
+            <div class="doctor-card" data-specialty="Pediatrician" data-availability="today" data-hospital="Primary">
+                <div class="free-tag">FREE</div>
+                <div class="doctor-info">
+                    <div class="doctor-avatar" style="background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="doctor-details">
+                        <h3>Dr. Sunita Patel</h3>
+                        <p class="specialty">
+                            <i class="fas fa-baby"></i> Pediatrician
+                        </p>
+                        <p class="experience">
+                            <i class="fas fa-star"></i> 4.8 (280 reviews) • 
+                            <i class="fas fa-briefcase"></i> 12 years experience
+                        </p>
+                        <p class="availability available">
+                            <i class="fas fa-clock"></i> Available Today (10 AM - 4 PM)
+                        </p>
+                        <p class="education">
+                            <i class="fas fa-graduation-cap"></i> M.B.B.S., D.C.H., Child Specialist
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doctor-meta">
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-rupee-sign"></i> Consultation Fee:</span>
+                        <span class="value free">COMPLETELY FREE</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-clock"></i> Wait Time:</span>
+                        <span class="value">30-45 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-language"></i> Languages:</span>
+                        <span class="value">Hindi, English, Gujarati</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-hospital"></i> Hospital:</span>
+                        <span class="value">Primary Health Center</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-stats">
+                    <div class="stat">
+                        <span class="number">4,500+</span>
+                        <span class="label">Child Patients</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">99%</span>
+                        <span class="label">Parent Satisfaction</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-actions">
+                    <button class="btn-view" onclick="viewDoctorProfile('Dr. Sunita Patel')">
+                        <i class="fas fa-eye"></i> View Profile
+                    </button>
+                    <button class="btn-book" onclick="selectDoctor('Dr. Sunita Patel', 'Pediatrician', 'Primary Health Center', '12 years', '4.8')">
+                        <i class="fas fa-calendar-check"></i> Select This Doctor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 4 - Dermatologist -->
+            <div class="doctor-card" data-specialty="Dermatologist" data-availability="week" data-hospital="Government">
+                <div class="free-tag">FREE</div>
+                <div class="doctor-info">
+                    <div class="doctor-avatar" style="background: linear-gradient(135deg, #E91E63 0%, #F48FB1 100%);">
+                        <i class="fas fa-allergies"></i>
+                    </div>
+                    <div class="doctor-details">
+                        <h3>Dr. Anil Kumar</h3>
+                        <p class="specialty">
+                            <i class="fas fa-spa"></i> Dermatologist
+                        </p>
+                        <p class="experience">
+                            <i class="fas fa-star"></i> 4.6 (190 reviews) • 
+                            <i class="fas fa-briefcase"></i> 8 years experience
+                        </p>
+                        <p class="availability">
+                            <i class="fas fa-clock"></i> Available This Week
+                        </p>
+                        <p class="education">
+                            <i class="fas fa-graduation-cap"></i> M.B.B.S., D.D.V., Skin Specialist
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doctor-meta">
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-rupee-sign"></i> Consultation Fee:</span>
+                        <span class="value free">COMPLETELY FREE</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-clock"></i> Wait Time:</span>
+                        <span class="value">2-3 days</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-language"></i> Languages:</span>
+                        <span class="value">Hindi, English</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-hospital"></i> Hospital:</span>
+                        <span class="value">Government Skin Hospital</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-stats">
+                    <div class="stat">
+                        <span class="number">2,800+</span>
+                        <span class="label">Skin Treatments</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">94%</span>
+                        <span class="label">Recovery Rate</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-actions">
+                    <button class="btn-view" onclick="viewDoctorProfile('Dr. Anil Kumar')">
+                        <i class="fas fa-eye"></i> View Profile
+                    </button>
+                    <button class="btn-book" onclick="selectDoctor('Dr. Anil Kumar', 'Dermatologist', 'Government Skin Hospital', '8 years', '4.6')">
+                        <i class="fas fa-calendar-check"></i> Select This Doctor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Doctor 5 - Gynecologist -->
+            <div class="doctor-card" data-specialty="Gynecologist" data-availability="today" data-hospital="Community">
+                <div class="free-tag">FREE</div>
+                <div class="doctor-info">
+                    <div class="doctor-avatar" style="background: linear-gradient(135deg, #9C27B0 0%, #E1BEE7 100%);">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <div class="doctor-details">
+                        <h3>Dr. Meena Reddy</h3>
+                        <p class="specialty">
+                            <i class="fas fa-female"></i> Gynecologist
+                        </p>
+                        <p class="experience">
+                            <i class="fas fa-star"></i> 4.9 (310 reviews) • 
+                            <i class="fas fa-briefcase"></i> 14 years experience
+                        </p>
+                        <p class="availability available">
+                            <i class="fas fa-clock"></i> Available Today (11 AM - 3 PM)
+                        </p>
+                        <p class="education">
+                            <i class="fas fa-graduation-cap"></i> M.B.B.S., M.D. (Gynecology)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="doctor-meta">
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-rupee-sign"></i> Consultation Fee:</span>
+                        <span class="value free">COMPLETELY FREE</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-clock"></i> Wait Time:</span>
+                        <span class="value">45-60 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-language"></i> Languages:</span>
+                        <span class="value">Hindi, English, Telugu</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label"><i class="fas fa-hospital"></i> Hospital:</span>
+                        <span class="value">Community Health Center</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-stats">
+                    <div class="stat">
+                        <span class="number">3,600+</span>
+                        <span class="label">Women Patients</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">97%</span>
+                        <span class="label">Patient Satisfaction</span>
+                    </div>
+                </div>
+                
+                <div class="doctor-actions">
+                    <button class="btn-view" onclick="viewDoctorProfile('Dr. Meena Reddy')">
+                        <i class="fas fa-eye"></i> View Profile
+                    </button>
+                    <button class="btn-book" onclick="selectDoctor('Dr. Meena Reddy', 'Gynecologist', 'Community Health Center', '14 years', '4.9')">
+                        <i class="fas fa-calendar-check"></i> Select This Doctor
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Free Prescription Info -->
+        <div class="free-prescription-info">
+            <h3><i class="fas fa-pills"></i> About FREE Prescription</h3>
+            <p>After selecting a doctor, you will receive a complete prescription including:</p>
+            <div class="prescription-features">
+                <div class="feature">
+                    <i class="fas fa-capsules"></i>
+                    <h4>Free Medicines</h4>
+                    <p>All medicines are provided free from government pharmacy</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Dosage Schedule</h4>
+                    <p>Detailed timing (Morning/Afternoon/Night) instructions</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-print"></i>
+                    <h4>Print & Export</h4>
+                    <p>Download prescription in Word/PDF format</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Free Follow-up</h4>
+                    <p>Free follow-up consultation after 7 days</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="dashboard.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Dashboard
+            </a>
+            <button class="nav-btn primary" onclick="emergencyHelp()">
+                <i class="fas fa-phone-alt"></i> Emergency: Call 108
+            </button>
+            <button class="nav-btn secondary" onclick="showFreeMedicines()">
+                <i class="fas fa-tablets"></i> View Free Medicines List
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="./assets/js/doctors.js"></script>
+</body>
+</html>

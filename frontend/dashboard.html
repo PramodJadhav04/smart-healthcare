@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Dashboard - SmartCare</title>
+    <link rel="stylesheet" href="./assets/css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Top Navigation -->
+    <div class="topbar">
+      <div class="logo">🏥 SmartCare</div>
+      <div class="user-info">
+        <span class="username"
+          >👤 <span id="topUserName">Loading...</span></span
+        >
+        <a href="login.html" class="logout" id="logoutBtn">Logout</a>
+      </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="dashboard-container">
+      <div class="sidebar">
+        <div class="user-profile">
+          <div class="avatar" id="userAvatar">--</div>
+          <h3 id="patientName">Loading...</h3>
+          <p>Patient ID: <span id="patientId">--</span></p>
+        </div>
+        <ul class="menu">
+          <li class="active"><a href="dashboard.html">🏠 Dashboard</a></li>
+          <li><a href="checkup.html">🩺 New Checkup</a></li>
+          <li><a href="doctors.html">👨‍⚕️ Book Doctor</a></li>
+          <li><a href="#">📋 Medical History</a></li>
+          <li><a href="#">💊 Prescriptions</a></li>
+          <li><a href="#">⚙️ Settings</a></li>
+        </ul>
+      </div>
+
+      <div class="main-content">
+        <h1>Welcome back, <span id="welcomeName">Patient</span>!</h1>
+        <p class="subtitle">Your health dashboard</p>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <h3>🩺 Health Score</h3>
+            <p class="score">85/100</p>
+            <p class="trend">↑ 5% from last month</p>
+          </div>
+          <div class="stat-card">
+            <h3>📅 Next Appointment</h3>
+            <p class="date">15 Dec, 2024</p>
+            <p class="doctor">Dr. Sharma (Cardiologist)</p>
+          </div>
+          <div class="stat-card">
+            <h3>💊 Active Medications</h3>
+            <p class="count" id="medCount">Loading...</p>
+            <p class="reminder" id="medReminder">--</p>
+          </div>
+        </div>
+
+        <div class="quick-actions">
+          <h2>Quick Actions</h2>
+          <div class="action-buttons">
+            <a href="checkup.html" class="action-btn">
+              <span>🩺</span>
+              <h4>New Health Checkup</h4>
+              <p>Start a new medical checkup</p>
+            </a>
+            <a href="doctors.html" class="action-btn">
+              <span>👨‍⚕️</span>
+              <h4>Book Doctor</h4>
+              <p>Consult with specialists</p>
+            </a>
+            <a href="#" class="action-btn">
+              <span>📋</span>
+              <h4>View Reports</h4>
+              <p>Check previous reports</p>
+            </a>
+            <a href="#" class="action-btn">
+              <span>💬</span>
+              <h4>Chat Support</h4>
+              <p>24/7 health support</p>
+            </a>
+          </div>
+        </div>
+
+        <div class="recent-activity">
+          <h2>Recent Activity</h2>
+          <ul>
+            <li>✅ Blood pressure check - 10 Dec</li>
+            <li>✅ Consultation with Dr. Patel - 8 Dec</li>
+            <li>📅 Next: Full body checkup - 20 Dec</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+   <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const patientData = JSON.parse(localStorage.getItem("patientData"));
+    if (!patientData) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    // --- User info ---
+    document.getElementById("patientName").innerText = patientData.fullName;
+    document.getElementById("topUserName").innerText = patientData.fullName;
+    document.getElementById("welcomeName").innerText = patientData.fullName;
+    document.getElementById("patientId").innerText = patientData.id;
+
+    const initials = patientData.fullName.split(" ").map(w => w[0]).join("").toUpperCase();
+    document.getElementById("userAvatar").innerText = initials;
+
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+        localStorage.clear();
+        window.location.href = "login.html";
+    });
+
+    // --- Active Medications ---
+    const activeMeds = patientData.activeMedications || []; // backend se array aana chahiye
+    const medCountEl = document.getElementById("medCount");
+    const medReminderEl = document.getElementById("medReminder");
+
+    if (activeMeds.length > 0) {
+        medCountEl.innerText = activeMeds.length + " Medication(s)";
+        medReminderEl.innerText = "Next dose in 4 hours"; // ya backend se exact time le sakte ho
+    } else {
+        medCountEl.innerText = "No active medications";
+        medReminderEl.innerText = "";
+    }
+});
+</script>
+
+  </body>
+</html>
