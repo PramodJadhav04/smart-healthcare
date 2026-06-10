@@ -10,7 +10,7 @@ A modern, full-stack digital healthcare platform designed to bridge the gap betw
 
 ## 🛠️ Tech Stack
 * **Frontend:** React.js, HTML5, CSS3, JavaScript (Tailwind CSS)
-* **Backend:** Node.js, Express.js / Python (Flask/Django) *[Apne according tweak kar lena]*
+* **Backend:** Node.js, Express.js / Python (Flask/Django)
 * **Database:** MongoDB / MySQL
 
 ## 📁 Project Structure
